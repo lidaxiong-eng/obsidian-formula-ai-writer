@@ -123,14 +123,14 @@ var FormulaModal = class extends import_obsidian2.Modal {
   onOpen() {
     const { contentEl } = this;
     contentEl.addClass("formula-ai-modal");
-    contentEl.createEl("h3", { text: "AI \u516C\u5F0F\u751F\u6210" });
+    new import_obsidian2.Setting(contentEl).setName("AI \u516C\u5F0F\u751F\u6210").setHeading();
     new import_obsidian2.Setting(contentEl).setName("\u516C\u5F0F\u540D\u79F0").setDesc("\u4F8B\u5982\uFF1A\u4E8C\u6B21\u65B9\u7A0B\u6C42\u6839\u516C\u5F0F / \u6B27\u62C9\u516C\u5F0F / \u8D1D\u53F6\u65AF\u5B9A\u7406 / \u6D1B\u4F26\u5179\u53D8\u6362").addText((t) => {
       t.setPlaceholder("\u8F93\u5165\u516C\u5F0F\u7684\u4E2D\u6587\u6216\u82F1\u6587\u540D\u2026").setValue(this.query).onChange((v) => this.query = v);
-      t.inputEl.style.width = "100%";
+      t.inputEl.addClass("formula-ai-input");
       t.inputEl.addEventListener("keydown", (e) => {
         if (e.key === "Enter" && !e.isComposing) void this.run();
       });
-      setTimeout(() => t.inputEl.focus(), 30);
+      window.setTimeout(() => t.inputEl.focus(), 30);
     });
     new import_obsidian2.Setting(contentEl).setName("\u63D2\u5165\u5F62\u5F0F").addDropdown(
       (d) => d.addOption("inline", "\u884C\u5185  $...$").addOption("block", "\u5757\u7EA7  $$...$$").setValue(this.format).onChange((v) => {
@@ -145,10 +145,9 @@ var FormulaModal = class extends import_obsidian2.Modal {
     ).addButton((b) => b.setButtonText("\u590D\u5236").onClick(() => void this.copy())).addExtraButton(
       (b) => b.setIcon("cross").setTooltip("\u5173\u95ED").onClick(() => this.close())
     );
-    contentEl.createEl("div", {
-      cls: "formula-ai-hint",
-      text: "\u751F\u6210\u540E\u53EF\u5207\u6362\u300C\u63D2\u5165\u5F62\u5F0F\u300D\u5B9E\u65F6\u6539\u5199\u5305\u88F9\u65B9\u5F0F\uFF0C\u518D\u63D2\u5165\u6216\u590D\u5236\u3002"
-    });
+    new import_obsidian2.Setting(contentEl).setDesc(
+      "\u751F\u6210\u540E\u53EF\u5207\u6362\u300C\u63D2\u5165\u5F62\u5F0F\u300D\u5B9E\u65F6\u6539\u5199\u5305\u88F9\u65B9\u5F0F\uFF0C\u518D\u63D2\u5165\u6216\u590D\u5236\u3002"
+    );
     this.resultEl = contentEl.createDiv({
       cls: "formula-ai-result is-placeholder"
     });
@@ -257,7 +256,7 @@ var FormulaSettingTab = class extends import_obsidian3.PluginSettingTab {
   display() {
     const { containerEl } = this;
     containerEl.empty();
-    containerEl.createEl("h2", { text: "Formula AI Writer \u8BBE\u7F6E" });
+    new import_obsidian3.Setting(containerEl).setName("Formula AI Writer").setHeading();
     new import_obsidian3.Setting(containerEl).setName("API Key").setDesc("\u4EE5 sk- \u5F00\u5934\u7684\u5BC6\u94A5\uFF0C\u4EC5\u4FDD\u5B58\u5728\u672C\u673A\u6B64\u5E93\u7684\u914D\u7F6E\u6587\u4EF6\u4E2D\u3002").addText((t) => {
       t.setPlaceholder("sk-\u2026").setValue(this.plugin.settings.apiKey).onChange(async (v) => {
         this.plugin.settings.apiKey = v.trim();
@@ -265,22 +264,19 @@ var FormulaSettingTab = class extends import_obsidian3.PluginSettingTab {
       });
       t.inputEl.type = "text";
       t.inputEl.autocomplete = "off";
-      t.inputEl.addClass("formula-ai-key");
-      t.inputEl.style.width = "260px";
+      t.inputEl.addClass("formula-ai-key formula-ai-input");
     });
     new import_obsidian3.Setting(containerEl).setName("Base URL").setDesc("\u4EFB\u4F55 OpenAI \u517C\u5BB9\u7AEF\u70B9\u3002\u586B\u5230 /v1 \u4E3A\u6B62\uFF0C\u4E0D\u8981\u5E26 /chat/completions\u3002").addText((t) => {
       t.setPlaceholder("https://api.openai.com/v1").setValue(this.plugin.settings.baseUrl).onChange(async (v) => {
         this.plugin.settings.baseUrl = v.trim().replace(/\/+$/, "");
         await this.plugin.saveSettings();
       });
-      t.inputEl.style.width = "260px";
     });
     new import_obsidian3.Setting(containerEl).setName("\u6A21\u578B\u540D").setDesc("\u4F8B\u5982 gpt-4o-mini\u3001deepseek-chat\u3001qwen-plus\u3001glm-4-flash\u3002").addText((t) => {
       t.setPlaceholder("gpt-4o-mini").setValue(this.plugin.settings.model).onChange(async (v) => {
         this.plugin.settings.model = v.trim();
         await this.plugin.saveSettings();
       });
-      t.inputEl.style.width = "180px";
     });
     new import_obsidian3.Setting(containerEl).setName("\u9ED8\u8BA4\u63D2\u5165\u5F62\u5F0F").setDesc("\u884C\u5185\u516C\u5F0F\u4E3A $...$\uFF0C\u5757\u7EA7\u516C\u5F0F\u4E3A\u5355\u72EC\u6210\u884C\u7684 $$...$$\u3002").addDropdown(
       (d) => d.addOption("inline", "\u884C\u5185 $...$").addOption("block", "\u5757\u7EA7 $$...$$").setValue(this.plugin.settings.defaultFormat).onChange(async (v) => {
@@ -289,7 +285,7 @@ var FormulaSettingTab = class extends import_obsidian3.PluginSettingTab {
       })
     );
     new import_obsidian3.Setting(containerEl).setName("\u6E29\u5EA6").setDesc("\u8D8A\u4F4E\u8D8A\u7A33\u5B9A\uFF0C\u516C\u5F0F\u8BC6\u522B\u5EFA\u8BAE 0\uFF5E0.3\u3002").addSlider(
-      (s) => s.setLimits(0, 1, 0.05).setValue(this.plugin.settings.temperature).setDynamicTooltip().onChange(async (v) => {
+      (s) => s.setLimits(0, 1, 0.05).setValue(this.plugin.settings.temperature).onChange(async (v) => {
         this.plugin.settings.temperature = v;
         await this.plugin.saveSettings();
       })

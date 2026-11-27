@@ -2,10 +2,13 @@
   min-width: 460px;
 }
 
-.formula-ai-modal h3 {
-  margin: 0 0 14px 0;
-  font-size: 16px;
-  font-weight: 600;
+/* 三个输入框统一宽度（原为 JS 内联 style，已按审核要求移入 CSS） */
+.formula-ai-input {
+  width: 100%;
+}
+
+.formula-ai-key {
+  width: 260px;
 }
 
 .formula-ai-hint {
@@ -16,7 +19,7 @@
 }
 
 .formula-ai-result {
-  margin-top: 16px;
+  margin-top: 8px;
   padding: 12px 14px;
   border: 1px solid var(--background-modifier-border);
   border-radius: 8px;
