@@ -23,7 +23,7 @@ Type the name of a formula, get ready-to-use LaTeX back. Supports both inline `$
 ### From source
 
 ```bash
-git clone https://github.com/lidaxiong-eng/obsidian-formula-ai-writer
+git clone https://github.com/yourname/obsidian-formula-ai-writer
 cd obsidian-formula-ai-writer
 npm install
 npm run dev      # watch mode
