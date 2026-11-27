@@ -1,12 +1,12 @@
 {
   "name": "obsidian-formula-ai-writer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "输入公式名称，用 AI 生成 LaTeX 公式并插入 Obsidian 笔记",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",
     "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
-    "version": "node version-bump.mjs && git add manifest.json versions.json"
+    "bump": "node version-bump.mjs && git add manifest.json versions.json"
   },
   "keywords": [
     "obsidian",
@@ -15,7 +15,7 @@
     "mathjax",
     "ai"
   ],
-  "author": "lidaxiong",
+  "author": "YOUR NAME",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^22.10.5",

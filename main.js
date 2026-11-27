@@ -256,7 +256,7 @@ var FormulaSettingTab = class extends import_obsidian3.PluginSettingTab {
   display() {
     const { containerEl } = this;
     containerEl.empty();
-    new import_obsidian3.Setting(containerEl).setName("Formula AI Writer").setHeading();
+    new import_obsidian3.Setting(containerEl).setName("\u63A5\u53E3\u914D\u7F6E").setHeading();
     new import_obsidian3.Setting(containerEl).setName("API Key").setDesc("\u4EE5 sk- \u5F00\u5934\u7684\u5BC6\u94A5\uFF0C\u4EC5\u4FDD\u5B58\u5728\u672C\u673A\u6B64\u5E93\u7684\u914D\u7F6E\u6587\u4EF6\u4E2D\u3002").addText((t) => {
       t.setPlaceholder("sk-\u2026").setValue(this.plugin.settings.apiKey).onChange(async (v) => {
         this.plugin.settings.apiKey = v.trim();
