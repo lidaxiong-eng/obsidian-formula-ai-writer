@@ -1,0 +1,10 @@
+{
+  "id": "formula-ai-writer",
+  "name": "Formula AI Writer",
+  "version": "1.0.0",
+  "minAppVersion": "1.5.0",
+  "description": "Turn a formula name into ready-to-paste LaTeX, as inline $...$ or block $$...$$, inserted at your cursor.",
+  "author": "YOUR NAME",
+  "authorUrl": "https://github.com/YOUR_GITHUB_USERNAME",
+  "isDesktopOnly": false
+}

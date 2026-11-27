@@ -1,0 +1,59 @@
+.formula-ai-modal {
+  min-width: 460px;
+}
+
+.formula-ai-modal h3 {
+  margin: 0 0 14px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.formula-ai-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 4px 0 12px 0;
+  line-height: 1.6;
+}
+
+.formula-ai-result {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 8px;
+  background: var(--background-secondary);
+  min-height: 52px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.formula-ai-result code {
+  font-family: var(--font-monospace);
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: var(--text-normal);
+}
+
+.formula-ai-result.is-placeholder {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.formula-ai-result.is-error {
+  border-color: var(--background-modifier-error);
+  color: var(--text-error);
+  font-size: 13px;
+}
+
+.formula-ai-result .formula-ai-preview {
+  display: block;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--background-modifier-border);
+  font-family: var(--font-interface);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.formula-ai-key { font-family: var(--font-monospace); letter-spacing: 0.02em; }
